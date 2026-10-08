@@ -1,5 +1,7 @@
 # speedup_calc: reference implementation
 
+> Notice: This companion repository, including this README, was set up using Anthropic's Claude AI Tools.
+
 This code computes the guessing-moment exponent `s = f(1)/f(1/2)`, with `f(rho) = ln E_P[G^rho]`, for product-distribution advice. It also reproduces the numbers of the paper
 
 > C. Schubert, N. Paskarbeit, M. J. Kramer, J.-P. Seifert, M. Margraf. *Pinpointing Super-Quadratic Quantum Enumeration Speedups: Exact and Certified Evaluation of the Guessing-Moment Exponent under Product-Distribution Advice.* Post-Quantum and Quantum-based Security (PQQS '26). https://doi.org/10.1145/3839338.3857257
