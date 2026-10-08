@@ -1,0 +1,65 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the PQQS '26 paper (preferred citation below)."
+title: "speedup_calc: reference implementation for the guessing-moment exponent under product-distribution advice"
+type: software
+authors:
+  - given-names: Carsten
+    family-names: Schubert
+    affiliation: Technische Universität Berlin
+    orcid: "https://orcid.org/0009-0004-2795-3650"
+  - given-names: Niklas
+    family-names: Paskarbeit
+    affiliation: Freie Universität Berlin
+    orcid: "https://orcid.org/0009-0006-6156-9075"
+  - given-names: Maximilian Johannes
+    family-names: Kramer
+    affiliation: Freie Universität Berlin
+    orcid: "https://orcid.org/0009-0006-3807-2095"
+license: PolyForm-Noncommercial-1.0.0
+repository-code: "https://github.com/D-VAmpire/quantum-guessing-speedup-calculations"
+preferred-citation:
+  type: conference-paper
+  title: "Pinpointing Super-Quadratic Quantum Enumeration Speedups: Exact and Certified Evaluation of the Guessing-Moment Exponent under Product-Distribution Advice"
+  authors:
+    - given-names: Carsten
+      family-names: Schubert
+    - given-names: Niklas
+      family-names: Paskarbeit
+    - given-names: Maximilian J.
+      family-names: Kramer
+    - given-names: Jean-Pierre
+      family-names: Seifert
+    - given-names: Marian
+      family-names: Margraf
+  collection-title: "Post-Quantum and Quantum-based Security (PQQS '26)"
+  conference:
+    name: "PQQS '26: Post-Quantum and Quantum-based Security"
+    city: Milpitas
+    region: CA
+    country: US
+    date-start: 2026-11-02
+    date-end: 2026-11-04
+  publisher:
+    name: ACM
+  doi: 10.1145/3839338.3857257
+  year: 2026
+references:
+  - type: article
+    title: "Pinpointing Super-Quadratic Quantum Enumeration Speedups: Exact and Certified Evaluation of the Guessing-Moment Exponent under Product-Distribution Advice (full version)"
+    authors:
+      - given-names: Carsten
+        family-names: Schubert
+      - given-names: Niklas
+        family-names: Paskarbeit
+      - given-names: Maximilian J.
+        family-names: Kramer
+      - given-names: Jean-Pierre
+        family-names: Seifert
+      - given-names: Marian
+        family-names: Margraf
+    url: "https://arxiv.org/abs/2609.28226"
+    identifiers:
+      - type: other
+        value: "arXiv:2609.28226"
+        description: arXiv identifier of the full version
+    year: 2026

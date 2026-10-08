@@ -1,0 +1,7 @@
+# Required (tested with numpy 2.2.6 on Python 3.10 and numpy 2.5.3 on Python 3.13)
+numpy>=2.0
+
+# Optional, only for the scripts that use them:
+#   scipy         test_vs_budroni_martensson.py (zeta function used by Budroni and Martensson's code)
+#   python-flint  certify_table2_AB.py (Arb ball arithmetic)
+#   mpmath        reference_values.py (high-precision reference values)

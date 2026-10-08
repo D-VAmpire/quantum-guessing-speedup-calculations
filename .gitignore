@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+# Budroni and Martensson's file, downloaded by test_vs_budroni_martensson.py
+.cache/
