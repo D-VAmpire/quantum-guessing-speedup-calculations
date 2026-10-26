@@ -88,7 +88,7 @@ def _():
     return ", ".join(out), ok, "2.5%/97.5% quantiles of s over n1 ~ Bin(W, f1); reported rows use n1 = round(W f1)"
 
 
-@check("Sec. 7", "asymmetric 2.763 vs symmetric 2.532 at n = 128, beta = 0.05")
+@check("Sec. 7", "asymmetric 2.763 vs symmetric 2.532 at W = m = 128, beta = 0.05")
 def _():
     a = exact_speedup(D.cipher_coldboot("AES-128", 0.05, asymmetric=True))["s"]
     s = exact_speedup(D.cipher_coldboot("AES-128", 0.05, asymmetric=False))["s"]
@@ -271,7 +271,7 @@ def _():
     return f"max {max(n)}", max(n) == 16640, "certify_table2_AB.py counts the levels exactly"
 
 
-@check("App. E (full version)", "the certificate returns 15.3 on Ber(0.999) advice, m = 256")
+@check("App. E (full version; App. D in arXiv v1)", "the certificate returns 15.3 on Ber(0.999) advice, m = 256")
 def _():
     marg = [[0.999, 0.001]] * 256
     c = certify(marg, 0.02)
@@ -281,12 +281,12 @@ def _():
 
 
 NOT_COVERED = [
-    ("App. F.2 / Remarks 6.9-6.10 (full version; the PQQS version states no measured values)",
+    ("arXiv v1, App. E.2 / Remarks 6.10-6.11 (the PQQS version states no measured values in App. F.2 / Remarks 6.9-6.10, nor will arXiv v2)",
      "floating-point floor: measured root error ~1e-14, ~2e-16 at m = 256, "
      "crossing near eta ~ 1e-11, floor ~1e-10"),
-    ("App. F.2 (full version)", "merge-tree round-off: growth exponent 0.96, 3.3e-15 at m = 512, "
+    ("arXiv v1, App. E.2", "merge-tree round-off: growth exponent 0.96, 3.3e-15 at m = 512, "
      "m/log m ~ 32 at m = 256"),
-    ("App. F (full version)", "atom spacing ~1e-120 at m = 256"),
+    ("arXiv v1, App. E.2", "atom spacing ~1e-120 at m = 256"),
 ]
 
 if __name__ == "__main__":

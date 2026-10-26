@@ -1,6 +1,6 @@
 # Verification
 
-Section, result and equation numbers refer to the PQQS '26 paper (https://doi.org/10.1145/3839338.3857257) and its arXiv full version, which share the numbering of Sections 1–8 and Appendices A–F.
+Section, result and equation numbers refer to the PQQS '26 paper (https://doi.org/10.1145/3839338.3857257). The arXiv full version shares them from its version 2 on; version 1 numbers several of them differently (see README).
 
 Last full run: 2026-10-08. Environments:
 
@@ -18,7 +18,7 @@ Last full run: 2026-10-08. Environments:
 6. **BGMN.** The exact `s` is at least the BGMN Theorem 4.3 bound.
 7. **Skewed, large-m advice.** The binned engine equals the exact engine to 1e-10 on Ber(0.999) with m = 256 and m = 1024, and on Ber(0.97) with m = 512. On the two-type cold-boot advice of Table 2 (AES-128, `beta = 0.01`) it agrees to 1.4e-10 at `eta = 0.001`.
 8. **Direct convolution.** The binned engine equals plain direct convolution under the same binning to 1e-13. This covers template advice with one or ten traces and the two-type cold-boot advice.
-9. **Certificate.** The certificate brackets the brute-force value on three models at `eta = 0.2` and `0.05`, and `B` shrinks with `eta`. On Ber(0.999) with m = 256 and `eta = 0.02`, it encloses the exact 5.5004 with `B = 15.27`: valid, but vacuous, as App. E of the full version states.
+9. **Certificate.** The certificate brackets the brute-force value on three models at `eta = 0.2` and `0.05`, and `B` shrinks with `eta`. On Ber(0.999) with m = 256 and `eta = 0.02`, it encloses the exact 5.5004 with `B = 15.27`: valid, but vacuous, as the full version states (App. E; App. D in arXiv v1).
 
 ## 2. Cross-check with Budroni and Mårtensson (`test_vs_budroni_martensson.py`)
 
@@ -100,7 +100,7 @@ The table below is `calibrate_avg_rank.py`'s full output (re-run 2026-10-08). It
 | Sec. 7 | 2.763 vs 2.532 (symmetric) | 2.7626 vs 2.5317 |
 | Table 2 caption, Sec. 7 | ±0.003 at `eta = 0.005`; [2.014, 2.022] at SNR 1 | B ≤ 0.0028; [2.014, 2.022] |
 | Sec. 7 | uniform `N = 2^128`: 2.0027; excess ≈ 0.015 | 2.00268; 0.0153 |
-| Sec. 7 | `Hbar_{1/2}/Hbar_{2/3}` ≈ 1.015 | 1.0145 (SNR 5), 1.0066 (SNR 1) |
+| Sec. 7 | `Hbar_{1/2}/Hbar_{2/3}` at most about 1.02 | max 1.0221 (SNR 20); SNR 1: 1.0070, SNR 5: 1.0155 |
 | Sec. 7 | `s` ≈ 2 across the SNR range | 2.004–2.042 (SNR 0.2–100) |
 | Sec. 7 | 1.55 at β = 0.01, growth like (2/3)β^(−1/6) | 1.5524; 6.705 vs 6.667 at 1e-6 |
 | Sec. 7 | ten traces, SNR 1: 2.28 at about 2^73 | 2.2809 (2.2615, 2.2331, 2.3480), 2^73.3 |
@@ -113,13 +113,13 @@ The table below is `calibrate_avg_rank.py`'s full output (re-run 2026-10-08). It
 | App. C | 1.08 | 1.0804 (η = 0), 1.0799–1.0814 (η ≤ 0.05) |
 | App. C | Gaussian tail below 1e-15 | max 7.4e-19 |
 | App. F.3 | at most 16640 levels | 16640 |
-| App. E (full version) | 15.3 | 15.27 at `eta = 0.02` |
+| App. E (full version; App. D in arXiv v1) | 15.3 | 15.27 at `eta = 0.02` |
 
 Two remarks on these numbers:
-- **Sec. 6.4.** The ratio closes monotonically in `m`, but not in `eta` at m = 8: 1.26 at `eta = 0.1`, 1.30 at 0.05.
-- **The 1.015 ratio.** "≈ 1.015" is the SNR-5 value.
+- **Sec. 6.4.** The ratio closes monotonically in `m`, as the PQQS text states, but not in `eta` at m = 8: 1.26 at `eta = 0.1`, 1.30 at 0.05. arXiv v1 said "with m and eta".
+- **The ratio in Sec. 7.** arXiv v1 printed "≈ 1.015", the SNR-5 value. The PQQS text states the bound over the tested SNR range, at most about 1.02.
 
-Not reproduced here are App. F.2's round-off measurements; see README.
+Not reproduced here are the round-off measurements of arXiv v1, App. E.2; see README.
 
 ## 6. Changes relative to arXiv v1
 

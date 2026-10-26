@@ -6,7 +6,7 @@ This code computes the guessing-moment exponent `s = f(1)/f(1/2)`, with `f(rho) 
 
 > C. Schubert, N. Paskarbeit, M. J. Kramer, J.-P. Seifert, M. Margraf. *Pinpointing Super-Quadratic Quantum Enumeration Speedups: Exact and Certified Evaluation of the Guessing-Moment Exponent under Product-Distribution Advice.* Post-Quantum and Quantum-based Security (PQQS '26). https://doi.org/10.1145/3839338.3857257
 
-The arXiv full version ([arXiv:2609.28226](https://arxiv.org/abs/2609.28226)) uses the same numbering for Sections 1–8 and Appendices A–F. Section, result and equation numbers in this repository refer to it. If you use this code, please cite the PQQS paper (see [Citation](#citation)).
+Section, result and equation numbers in this repository refer to the PQQS paper. The arXiv full version ([arXiv:2609.28226](https://arxiv.org/abs/2609.28226)) shares them from its version 2 on. Version 1 predates the camera-ready revision and numbers several results, equations and appendices differently; for example, the certificate is Prop. 6.9 there, with its proofs in App. D. If you use this code, please cite the PQQS paper (see [Citation](#citation)).
 
 Requirements: Python 3.10 or later and numpy (`pip install -r requirements.txt`). Three scripts need an optional package, listed in the table below and in `requirements.txt`.
 
@@ -76,7 +76,7 @@ certify(advice, eta=0.01)                           # s_eta, B, [s_eta - B, s_et
 - **Floating point.** The exact engine and the binned engine run in double precision. The certificate bounds the binning error of the exact-arithmetic estimator, and the floating-point error of Lemma 4.5 comes on top. Nothing here is an end-to-end interval enclosure, except `certify_table2_AB.py`.
 - **Certificate slack.** `B` is a rigorous bound and can be far above the actual error. For i.i.d. ternary advice (0.6, 0.25, 0.15) with m = 8 at `eta = 0.05`, `B = 0.25` while `|s_eta - s|` is below 1e-15. Report `s_eta` together with the interval, and do not present `B` as the achieved accuracy.
 - **Exact engine size.** The exact engine handles few coordinate types with small alphabets. Its level counts are capped at 5·10^6, and larger instances should be binned.
-- **Not reproduced.** The round-off measurements in App. F.2 of the arXiv full version are not produced by this code: the root error ≈ 1e-14, the floor ~1e-10, the growth exponent 0.96 and 3.3e-15 at m = 512. The PQQS version states no measured values there. `paper_numbers.py` lists them.
+- **Not reproduced.** The round-off measurements quoted in App. E.2 of the legacy version arXiv v1 are not produced by this code: the root error ≈ 1e-14, the floor ~1e-10, the growth exponent 0.96 and 3.3e-15 at m = 512. The PQQS version (App. F.2) states no measured values there, and neither does arXiv v2. `paper_numbers.py` lists them.
 
 ## Third-party code
 

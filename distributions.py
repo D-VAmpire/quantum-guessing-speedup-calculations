@@ -27,7 +27,7 @@ def bernoulli(correct):
 
 def coldboot_symmetric(delta, W):
     """Symmetric channel: each of W bits correct w.p. 1 - delta  [Seed Sec. IV.1.b].
-    Used only for the symmetric comparison in Sec. 7 (2.532 at n = 128, beta = 0.05)."""
+    Used only for the symmetric comparison in Sec. 7 (2.532 at W = m = 128, beta = 0.05)."""
     return [bernoulli(1.0 - delta)] * W
 
 

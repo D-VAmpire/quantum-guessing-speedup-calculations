@@ -13,7 +13,7 @@ Run:  python3 test_correctness.py      (exit status 0 iff all tests pass)
     cases failed when the binned laws were convolved without tilting)
  8) binned engine == plain direct convolution on template-attack advice
  9) the certificate of Prop. 6.8 brackets the true s; B shrinks with eta;
-    on Ber(0.999)^256 it is valid but vacuous (B = 15.3, App. E of the full version)
+    on Ber(0.999)^256 it is valid but vacuous (B = 15.3; full version, App. E, App. D in arXiv v1)
 """
 
 from __future__ import annotations

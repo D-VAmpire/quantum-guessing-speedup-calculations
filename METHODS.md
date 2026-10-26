@@ -1,6 +1,6 @@
 # How the code realizes the paper, and where it differs
 
-Section, result and equation numbers are those of the PQQS '26 paper (https://doi.org/10.1145/3839338.3857257), which the arXiv full version shares for Sections 1–8 and Appendices A–F.
+Section, result and equation numbers are those of the PQQS '26 paper (https://doi.org/10.1145/3839338.3857257). The arXiv full version shares them from its version 2 on; version 1 numbers several of them differently (see README).
 
 ## The quantity
 
@@ -62,7 +62,7 @@ For each `rho`, the certificate is assembled from the strictly up-rounded chains
 - **Mass-chain term.** The upper end of Eq. (12) gets the additive term `D_pi max_t e^{-psi t} hi_rho(t)`.
   - Relative to the upper end, this term is the lost tilted mass times `R`, the ratio of the peak of `e^{-psi t} hi_rho(t)` to its average under the tilted mass chain. `certify` reports `R` as `mass_term_ratio`.
   - At `eta = 0.05`, `R` lies between 1.19 and 2.31 (`rho = 1/2` and `1`) on four instances: the block C posterior at SNR 1 (seed 0), 64 × Ber(0.9), i.i.d. ternary (0.6, 0.25, 0.15) with m = 8, and 32 × Ber(0.99) + 32 × Ber(0.7). The code takes the peak over the whole grid; over the atoms of the chain alone, `R` lies between 1.19 and 1.57.
-  - The paper does not state `R`. App. E of the full version calls the term's relative size of order one.
+  - The paper states no value of `R`. App. E bounds the added term analytically, which makes it negligible whenever `m eta = O(log(m/eta))`.
 - **Bound.** `E_rho`, `B` and the enclosure `[s_eta - B, s_eta + B]` follow from Eq. (13).
 - **Size of the corrections.** With the floor at 1e-13, both losses are at the 1e-13 relative level, and the results agree with the untruncated certificate to the printed digits.
 
