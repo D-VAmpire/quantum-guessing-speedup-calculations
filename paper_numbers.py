@@ -4,9 +4,11 @@ compare them with the printed values.
 
 Table 2 itself is reproduced by table2.py and its blocks A/B are certified by
 certify_table2_AB.py; this script covers the remaining computed numbers of the
-PQQS '26 version and of the arXiv full version (marked "full version").  Each
-check prints PASS/FAIL, the recomputed value and, where useful, a note.  The
-models behind the numbers are fixed here and in table2_config.py.
+PQQS '26 version and of the arXiv full version (marked "full version").  The
+running example of the full version has its own script,
+running_example/toy_numbers.py.  Each check prints PASS/FAIL, the recomputed
+value and, where useful, a note.  The models behind the numbers are fixed here
+and in table2_config.py.
 
 Usage:  python3 paper_numbers.py        (exit status 0 iff every check passes)
 """

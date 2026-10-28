@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 # Budroni and Martensson's file, downloaded by test_vs_budroni_martensson.py
 .cache/
+# written by running_example/make_fig_running_example.py when run without an output directory
+running_example/fig_running_example.*

@@ -6,7 +6,7 @@ This code computes the guessing-moment exponent `s = f(1)/f(1/2)`, with `f(rho) 
 
 > C. Schubert, N. Paskarbeit, M. J. Kramer, J.-P. Seifert, M. Margraf. *Pinpointing Super-Quadratic Quantum Enumeration Speedups: Exact and Certified Evaluation of the Guessing-Moment Exponent under Product-Distribution Advice.* Post-Quantum and Quantum-based Security (PQQS '26). https://doi.org/10.1145/3839338.3857257
 
-Section, result and equation numbers in this repository refer to the PQQS paper. The arXiv full version ([arXiv:2609.28226](https://arxiv.org/abs/2609.28226)) shares them from its version 2 on. Version 1 predates the camera-ready revision and numbers several results, equations and appendices differently; for example, the certificate is Prop. 6.9 there, with its proofs in App. D. If you use this code, please cite the PQQS paper (see [Citation](#citation)).
+Section, result and equation numbers in this repository refer to the PQQS paper. The arXiv full version ([arXiv:2609.28226](https://arxiv.org/abs/2609.28226)) shares them from its version 2 on. Version 1 predates the camera-ready revision and numbers several results, equations and appendices differently; for example, the certificate is Prop. 6.9 there, with its proofs in App. D. Only the arXiv full version has the running example of `running_example/`, as Fig. 1 from version 2 on. If you use this code, please cite the PQQS paper (see [Citation](#citation)).
 
 Requirements: Python 3.10 or later and numpy (`pip install -r requirements.txt`). Three scripts need an optional package, listed in the table below and in `requirements.txt`.
 
@@ -17,6 +17,8 @@ Requirements: Python 3.10 or later and numpy (`pip install -r requirements.txt`)
 | `python3 table2.py` | all 28 values of Table 2, compared with the printed digits | Table 2 | numpy |
 | `python3 certify_table2_AB.py` | every printed digit of blocks A and B, in ball arithmetic | App. F.3 | python-flint |
 | `python3 paper_numbers.py` | the other computed numbers in the text (20 checks, PASS/FAIL) | Secs. 5–7, Apps. C, E, F.3 | numpy |
+| `python3 running_example/toy_numbers.py` | the numbers stated about the running example (9 checks, PASS/FAIL) | arXiv v2: Fig. 1, Secs. 3–4 | numpy |
+| `python3 running_example/make_fig_running_example.py` | the running-example figure as standalone TikZ, to compile with `pdflatex` | arXiv v2: Fig. 1 | LaTeX: standalone, tikz, libertine, newtx, zi4 |
 | `python3 calibrate_avg_rank.py quick` | the fitted `q` of block B (Monte Carlo) | Sec. 7 (B) | numpy |
 | `python3 test_correctness.py` | engines vs brute force, reference values, exact engine, direct convolution | — | numpy |
 | `python3 test_vs_budroni_martensson.py` | cross-check against Budroni and Mårtensson's code, downloaded on first run ([below](#third-party-code)) | Sec. 1, related work | scipy, network |
@@ -25,7 +27,7 @@ Requirements: Python 3.10 or later and numpy (`pip install -r requirements.txt`)
 
 Every script exits with status 0 when all of its checks pass. Run times on a laptop:
 
-- `table2.py` and `paper_numbers.py`: seconds.
+- `table2.py`, `paper_numbers.py` and the two `running_example/` scripts: seconds.
 - `certify_table2_AB.py` and `test_correctness.py`: about a minute each.
 - `calibrate_avg_rank.py quick`: a few minutes.
 
@@ -57,6 +59,7 @@ certify(advice, eta=0.01)                           # s_eta, B, [s_eta - B, s_et
 | `table2_config.py` | Table 2 rows, model parameters, printed values (single source) | Table 2 |
 | `template_data.py`, `data/template_posteriors.npz` | stored simulated posteriors for block C and the ten-trace example | Table 2 C, Sec. 7 |
 | `table2.py`, `paper_numbers.py` | reproduction scripts | Table 2, text |
+| `running_example/` | the running example: `toy_numbers.py` checks its numbers, `make_fig_running_example.py` draws its figure | arXiv v2: Fig. 1, Secs. 3–4 |
 | `certify_table2_AB.py` | Arb certification of blocks A and B | App. F.3 |
 | `calibrate_avg_rank.py` | block B calibration and its sensitivity study | Sec. 7 (B) |
 | `test_correctness.py`, `reference_values.py`, `test_vs_budroni_martensson.py` | validation | — |

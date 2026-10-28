@@ -121,6 +121,8 @@ Two remarks on these numbers:
 
 Not reproduced here are the round-off measurements of arXiv v1, App. E.2; see README.
 
+The running example of the arXiv full version (Fig. 1 from version 2 on; the PQQS version has none) is checked by `running_example/toy_numbers.py`, added on 2026-10-28 after the last full run: 9/9 pass with Python 3.10.12 and numpy 2.2.6. It recomputes the levels and rank blocks, `E_P[G] = 3741/512`, `E_P[sqrt G] = 2.3731`, `s = 2.3013` and the uniform 2.0730 (Sec. 3), the count polynomials (Sec. 4.1), the block-maximal 2.2684 (after Thm 4.1), and `c_1 = -1.2595`, `c_1/2 = -0.6862` with the Rényi ratio 2.0952 (Cor. 4.3). Brute force reproduces `s` to 1e-15. The exact engine is off by 7e-10, because it identifies levels by their surprisal rounded to 9 decimals.
+
 ## 6. Changes relative to arXiv v1
 
 - **Block B.** The values changed with the calibration: `E[G]` fit replaced by the 50-run fit (Section 4 above).
