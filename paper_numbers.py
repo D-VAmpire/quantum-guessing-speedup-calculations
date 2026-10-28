@@ -210,8 +210,8 @@ def _():
         "Lambda_eta at tau = 0 (uniform weights); bulk = central 98% of the uniform law"
 
 
-@check("Sec. 6.4", "certificate within a factor 1.14-1.45 of C(s) eta for eta <= 0.1 (m <= 10), "
-       "closing monotonically with m")
+@check("Sec. 6.4", "certificate within a factor 1.14-1.45 of C(s) eta at eta = 0.1 and 0.05 "
+       "(the PQQS text says eta <= 0.1; m <= 10), closing monotonically with m")
 def _():
     ratios = {}
     for m in (6, 8, 10):
@@ -235,6 +235,19 @@ def _():
     return "halving ratios " + ", ".join(f"{x:.3f}" for x in q), \
         all(0.3 < x < 0.6 for x in q) and all(0.45 < x < 0.55 for x in q[2:]), \
         "seeded heterogeneous advice (m = 8, 3 symbols), eta = 0.2 ... 0.2/128"
+
+
+@check("Sec. 6.4 (full version)", "at finer eta the ratio leaves the 1.14-1.45 band and eventually grows")
+def _():
+    out, ok = [], True
+    for m in (6, 8, 10):
+        marg = [[0.5, 0.3, 0.2]] * m
+        C = certificate_constant(marg, brute_force_speedup(marg)["s"])
+        r = [certify(marg, eta)["B"] / (C * eta) for eta in (0.05, 0.025, 0.0125, 0.00625, 0.003125)]
+        out.append(f"m = {m}: " + ", ".join(f"{x:.2f}" for x in r))
+        ok &= any(not 1.14 <= round(x, 2) <= 1.45 for x in r[1:]) and r[-1] > 2 * r[0]
+    return "; ".join(out), ok, \
+        "eta = 0.05, 0.025, ..., 0.003125; at the finest eta the ratio doubles per halving, B no longer decreases"
 
 
 @check("Remark 6.9", "f(1/2) ~ (1/2) m Hbar_2/3 overstates the true f(1/2) by ~20% at m = 8")
@@ -280,6 +293,24 @@ def _():
     s = exact_speedup(marg)["s"]
     return f"B = {c['B']:.2f} (eta = 0.02), interval contains s = {s:.4f}: {c['s_lo'] <= s <= c['s_hi']}", \
         f"{c['B']:.1f}" == "15.3" and c["s_lo"] <= s <= c["s_hi"], "B = infinity at eta >= 0.05"
+
+
+@check("App. G (full version)", "Monte Carlo standard error of s below 1e-4 for the block B fits")
+def _():
+    import calibrate_avg_rank as CA
+    se = []
+    for (m, T), q in D.SHA3_AVG_RANK_FITS.items():
+        smp = CA._Sampler([(m, q)])
+        stat = [math.log2(np.median(smp.sums(CA.REPS, CA.SEED0 + k, CA.RUNS)) / CA.RUNS)
+                for k in range(CA.CHUNKS)]
+        se_T = float(np.std(stat, ddof=1)) / math.sqrt(CA.CHUNKS)
+        dq = 2e-4 * (1 - q)
+        dT = (CA.avg_rank_stat([(m, q + dq)]) - CA.avg_rank_stat([(m, q - dq)])) / (2 * dq)
+        ds = (CA.moments([(m, q + dq)])["s"] - CA.moments([(m, q - dq)])["s"]) / (2 * dq)
+        se.append(abs(ds) * se_T / abs(dT))
+    return ", ".join(f"{x:.1e}" for x in se), max(se) < 1e-4, \
+        "rows 256/2^69, 256/2^128, 512/2^69, 512/2^128; spread of the fitted statistic over the 8 batches " \
+        "(seeds 0-7), carried to q and s by central differences"
 
 
 NOT_COVERED = [

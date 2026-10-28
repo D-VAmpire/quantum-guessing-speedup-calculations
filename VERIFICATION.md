@@ -90,7 +90,9 @@ The table below is `calibrate_avg_rank.py`'s full output (re-run 2026-10-08). It
 - These series were re-run on 2026-10-08 with `fit_V(m, 69, c, seed0=100)`.
 - Uncertainty on fewer bits always lowers `s`.
 
-## 5. Numbers in the text (`paper_numbers.py`, 20/20 pass)
+## 5. Numbers in the text (`paper_numbers.py`, 22/22 pass)
+
+The two checks marked "full version" for Sec. 6.4 and App. G were added on 2026-10-28 and pass with Python 3.10.12 and numpy 2.2.6.
 
 | where | printed | recomputed |
 |---|---|---|
@@ -109,14 +111,16 @@ The table below is `calibrate_avg_rank.py`'s full output (re-run 2026-10-08). It
 | Remark 6.2 | gaps 138, 1; `Lambda_eta` = 0.0036; 94% empty | 138, 1; 0.0036 (τ = 0, t = 4.553); 94.0% |
 | Sec. 6.4 | 1.14–1.45 | 1.14–1.45 (i.i.d. (0.5, 0.3, 0.2), m = 6, 8, 10) |
 | Sec. 6.4 | linear across seven halvings | ratios 0.372 … 0.518 |
+| Sec. 6.4 (full version) | at finer η the ratio leaves the band and eventually grows | η = 0.025: 2.44, 1.47, 1.01 (m = 6, 8, 10); η = 0.003125: 9.72, 5.23, 3.34 |
 | Remark 6.9 | ≈ 20% at m = 8 | 20.2% |
 | App. C | 1.08 | 1.0804 (η = 0), 1.0799–1.0814 (η ≤ 0.05) |
 | App. C | Gaussian tail below 1e-15 | max 7.4e-19 |
 | App. F.3 | at most 16640 levels | 16640 |
 | App. E (full version; App. D in arXiv v1) | 15.3 | 15.27 at `eta = 0.02` |
+| App. G (full version) | Monte Carlo standard error of `s` below 1e-4 | 8.1e-5, 3.6e-5, 8.9e-5, 4.9e-5 (block B rows) |
 
 Two remarks on these numbers:
-- **Sec. 6.4.** The ratio closes monotonically in `m`, as the PQQS text states, but not in `eta` at m = 8: 1.26 at `eta = 0.1`, 1.30 at 0.05. arXiv v1 said "with m and eta".
+- **Sec. 6.4.** The ratio closes monotonically in `m`, as the PQQS text states, but not in `eta` at m = 8: 1.26 at `eta = 0.1`, 1.30 at 0.05. arXiv v1 said "with m and eta". The PQQS text's "for eta <= 0.1" holds only at the tested 0.1 and 0.05: at `eta = 0.025` the ratio is 2.44 for m = 6 and 1.01 for m = 10, and at finer `eta` it grows, because `B` stops decreasing. arXiv v2 states this.
 - **The ratio in Sec. 7.** arXiv v1 printed "≈ 1.015", the SNR-5 value. The PQQS text states the bound over the tested SNR range, at most about 1.02.
 
 Not reproduced here are the round-off measurements of arXiv v1, App. E.2; see README.
