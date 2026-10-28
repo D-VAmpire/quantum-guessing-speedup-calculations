@@ -90,9 +90,9 @@ The table below is `calibrate_avg_rank.py`'s full output (re-run 2026-10-08). It
 - These series were re-run on 2026-10-08 with `fit_V(m, 69, c, seed0=100)`.
 - Uncertainty on fewer bits always lowers `s`.
 
-## 5. Numbers in the text (`paper_numbers.py`, 22/22 pass)
+## 5. Numbers in the text (`paper_numbers.py`, 23/23 pass)
 
-The two checks marked "full version" for Sec. 6.4 and App. G were added on 2026-10-28 and pass with Python 3.10.12 and numpy 2.2.6.
+The two checks marked "full version" for Sec. 6.4 and App. G and the Sec. 7 check on the block-maximal surrogate were added on 2026-10-28 and pass with Python 3.10.12 and numpy 2.2.6.
 
 | where | printed | recomputed |
 |---|---|---|
@@ -100,6 +100,7 @@ The two checks marked "full version" for Sec. 6.4 and App. G were added on 2026-
 | Sec. 7 | above 2.7 for practical cold boot | min 2.7134 (β ≤ 0.05) |
 | Sec. 7 (A), footnote | [3.77, 4.11], [2.70, 2.85] | [3.767, 4.113], [2.700, 2.847] |
 | Sec. 7 | 2.763 vs 2.532 (symmetric) | 2.7626 vs 2.5317 |
+| Sec. 7 | `A_rho` raised every entry above its block-maximal surrogate | blocks A and B: by 0.0026 (AES-256, β = 0.20) to 0.2072 (AES-128, β = 0.01); block C (binned): below 3e-5, halving with `eta` |
 | Table 2 caption, Sec. 7 | ±0.003 at `eta = 0.005`; [2.014, 2.022] at SNR 1 | B ≤ 0.0028; [2.014, 2.022] |
 | Sec. 7 | uniform `N = 2^128`: 2.0027; excess ≈ 0.015 | 2.00268; 0.0153 |
 | Sec. 7 | `Hbar_{1/2}/Hbar_{2/3}` at most about 1.02 | max 1.0221 (SNR 20); SNR 1: 1.0070, SNR 5: 1.0155 |

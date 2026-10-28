@@ -97,6 +97,27 @@ def _():
     return f"{a:.4f} vs {s:.4f}", (f"{a:.3f}", f"{s:.3f}") == ("2.763", "2.532"), ""
 
 
+@check("Sec. 7", "the level averages A_rho raise every entry of blocks A and B above its block-maximal surrogate")
+def _():
+    def lse(v):
+        mx = max(v)
+        return mx + math.log(sum(math.exp(x - mx) for x in v))
+
+    def surrogate_s(marg):                       # (N F_S(t))^rho in place of A_rho(t)
+        cum, a1, ah = 0, [], []
+        for t, n in level_counts(marg):
+            cum += n
+            a1.append(math.log(n) - t + math.log(cum))
+            ah.append(math.log(n) - t + 0.5 * math.log(cum))
+        return lse(a1) / lse(ah)
+    rows = [(f"{r['label']}, beta = {r['beta']:.2f}", T2.advice_A(r)) for r in T2.BLOCK_A] + \
+           [(f"{r['label']}, 2^{r['T']}", T2.advice_B(r)) for r in T2.BLOCK_B]
+    gaps = [(exact_speedup(m)["s"] - surrogate_s(m), lbl) for lbl, m in rows]
+    lo, hi = min(gaps), max(gaps)
+    return f"s - s_surrogate from {lo[0]:.4f} ({lo[1]}) to {hi[0]:.4f} ({hi[1]})", lo[0] > 0, \
+        "block C is binned; there the difference is below 3e-5 and halves with eta, below the printed precision"
+
+
 @check("Table 2 caption; Sec. 7", "block C: each posterior enclosed to within +-0.003 at eta = 0.005; "
        "all three in [2.014, 2.022] at SNR = 1")
 def _():
